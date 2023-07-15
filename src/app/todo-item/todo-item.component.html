@@ -7,7 +7,12 @@
   >
     {{ todo.description }}
   </ion-checkbox>
-  <ion-button slot="end" color="danger" fill="outline" (click)="onDeleteTodo()">
+  <ion-button
+    slot="end"
+    color="danger"
+    fill="outline"
+    (click)="onDeleteTodo(todo.id)"
+  >
     <ion-icon slot="start" name="trash"></ion-icon>
     Delete
   </ion-button>

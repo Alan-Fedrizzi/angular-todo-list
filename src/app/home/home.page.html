@@ -8,17 +8,10 @@
   <ion-grid class="home__grid ion-no-padding">
     <ion-col>
       <ion-row>
-        <app-todo-add
-          class="home__todo"
-          (todoCreated)="onTodoAdded($event)"
-        ></app-todo-add>
+        <app-todo-add class="home__todo"></app-todo-add>
       </ion-row>
       <ion-row>
-        <app-todo-list
-          class="home__todo"
-          [todos]="todos"
-          (todoDeleted)="teste()"
-        ></app-todo-list>
+        <app-todo-list class="home__todo" [todos]="todos"></app-todo-list>
       </ion-row>
     </ion-col>
   </ion-grid>

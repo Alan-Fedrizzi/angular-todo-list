@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { Todo } from '../todo.model';
+import { TodoService } from '../todo.service';
 
 @Component({
   selector: 'app-home',
@@ -8,21 +9,7 @@ import { Todo } from '../todo.model';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  todos: Todo[] = [];
+  @Input() todos: Todo[] = this.todoService.todos;
 
-  constructor() {}
-
-  onTodoAdded(description: string) {
-    if (description === '' || description.length < 0) return;
-
-    this.todos.push({
-      id: crypto.randomUUID(),
-      description: description,
-      done: false,
-    });
-  }
-
-  teste() {
-    console.log('aaaaaaaaaaaaa');
-  }
+  constructor(private todoService: TodoService) {}
 }
