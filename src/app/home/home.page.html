@@ -1,0 +1,25 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="dark">
+    <ion-title> Todo </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="home ion-no-padding">
+  <ion-grid class="home__grid ion-no-padding">
+    <ion-col>
+      <ion-row>
+        <app-todo-add
+          class="home__todo"
+          (todoCreated)="onTodoAdded($event)"
+        ></app-todo-add>
+      </ion-row>
+      <ion-row>
+        <app-todo-list
+          class="home__todo"
+          [todos]="todos"
+          (todoDeleted)="teste()"
+        ></app-todo-list>
+      </ion-row>
+    </ion-col>
+  </ion-grid>
+</ion-content>

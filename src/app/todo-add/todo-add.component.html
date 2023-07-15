@@ -1,0 +1,14 @@
+<ion-item>
+  <ion-input
+    label="Add a todo to my list"
+    label-placement="stacked"
+    placeholder="What do you have to do..."
+    type="text"
+    [(ngModel)]="newTodo"
+  ></ion-input>
+</ion-item>
+
+<ion-button expand="block" color="dark" (click)="onAddTodo()">
+  <ion-icon slot="start" name="add-outline"></ion-icon>
+  Add
+</ion-button>

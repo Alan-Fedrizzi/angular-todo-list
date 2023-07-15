@@ -1,0 +1,14 @@
+<ion-item class="todo-item">
+  <ion-checkbox
+    class="todo-item__checkbox"
+    labelPlacement="end"
+    justify="start"
+    [ngClass]="{ 'checkbox-checked': todo.done }"
+  >
+    {{ todo.description }}
+  </ion-checkbox>
+  <ion-button slot="end" color="danger" fill="outline" (click)="onDeleteTodo()">
+    <ion-icon slot="start" name="trash"></ion-icon>
+    Delete
+  </ion-button>
+</ion-item>
