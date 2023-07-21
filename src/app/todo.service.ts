@@ -7,9 +7,13 @@ import { Todo } from './todo.model';
 })
 export class TodoService {
   todos: Todo[] = [];
-  @Output() serviceTodoDelete = new EventEmitter<string>();
+  @Output() todoUpdated = new EventEmitter<Todo[]>();
 
   constructor() {}
+
+  getTodos() {
+    return this.todos.slice();
+  }
 
   onTodoAdded(description: string) {
     if (description === '' || description.length < 0) return;
@@ -19,14 +23,13 @@ export class TodoService {
       description: description,
       done: false,
     });
+
+    this.todoUpdated.emit(this.todos.slice());
   }
 
   onTodoDeleted(id: string) {
-    console.log(this.todos);
     const newTodos = this.todos.filter((todo) => todo.id !== id);
     this.todos = newTodos;
-    console.log(this.todos);
-    // está atualizando o todos corretamente, mas não está repassando para a lista renderizar novamente os items..
-    // vamos alterar e fazer com observables....
+    this.todoUpdated.emit(this.todos.slice());
   }
 }
