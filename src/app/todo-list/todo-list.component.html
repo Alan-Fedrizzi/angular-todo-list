@@ -5,4 +5,4 @@
   <app-todo-item *ngFor="let todo of todos" [todo]="todo"></app-todo-item>
 </ion-list>
 
-<!-- <ion-label *ngIf="!todos.length">Nothing todo, just relax...</ion-label> -->
+<ion-label *ngIf="todos.length <= 0">Nothing todo, just relax...</ion-label>
