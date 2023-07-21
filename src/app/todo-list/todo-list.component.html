@@ -1,8 +1,10 @@
 <ion-list class="todo-list">
   <ion-list-header>
-    <ion-label class="todo-list__title">Todo List</ion-label>
+    <ion-label class="todo-list__title">Todo List: left</ion-label>
   </ion-list-header>
   <app-todo-item *ngFor="let todo of todos" [todo]="todo"></app-todo-item>
 </ion-list>
 
 <ion-label *ngIf="todos.length <= 0">Nothing todo, just relax...</ion-label>
+
+<button (click)="teste()">click</button>
