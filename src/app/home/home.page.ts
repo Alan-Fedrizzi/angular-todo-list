@@ -15,7 +15,7 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
     this.todos = this.todoService.getTodos();
-    this.todoService.todoUpdated.subscribe((todos: Todo[]) => {
+    this.todoService.todosUpdated.subscribe((todos: Todo[]) => {
       this.todos = todos;
     });
   }

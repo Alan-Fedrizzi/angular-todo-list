@@ -23,4 +23,8 @@ export class TodoItemComponent implements OnInit {
   onDeleteTodo(id: string) {
     this.todoService.onTodoDeleted(id);
   }
+
+  onCheckTodo() {
+    this.todoService.onTodoChecked(this.todo.id);
+  }
 }
