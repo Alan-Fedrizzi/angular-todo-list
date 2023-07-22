@@ -24,7 +24,11 @@ export class TodoItemComponent implements OnInit {
     this.todoService.onTodoDeleted(id);
   }
 
-  onCheckTodo() {
+  onCheckTodo(e: MouseEvent) {
+    // e.preventDefault();
+    // e.stopPropagation();
+    // e.stopImmediatePropagation();
+    // console.log('aaaaaaaaa');
     this.todoService.onTodoChecked(this.todo.id);
   }
 }

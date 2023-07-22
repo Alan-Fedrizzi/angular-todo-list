@@ -45,15 +45,15 @@ export class TodoService {
   // está chamando duas vezes.. pq?????????
   // está chamando duas vezes.. pq?????????
   onTodoChecked(id: string) {
-    const index = this.todos.findIndex((object) => object.id === id);
+    // const index = this.todos.findIndex((object) => object.id === id);
 
-    if (index !== -1) {
-      console.log(this.todos[index].done);
-      this.todos[index].done = !this.todos[index].done;
-      console.log(this.todos[index].done);
-    }
+    // if (index !== -1) {
+    //   console.log(this.todos[index].done);
+    //   this.todos[index].done = !this.todos[index].done;
+    //   console.log(this.todos[index].done);
+    // }
 
-    this.todosUpdated.emit(this.todos.slice());
+    // this.todosUpdated.emit(this.todos.slice());
     console.log(this.todos);
 
     // console.log(this.todos);

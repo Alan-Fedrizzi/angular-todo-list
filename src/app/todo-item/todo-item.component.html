@@ -1,10 +1,11 @@
-<ion-item class="todo-item" (click)="onCheckTodo()">
+<ion-item class="todo-item" (click)="onCheckTodo($event)">
   <ion-checkbox
     class="todo-item__checkbox"
     labelPlacement="end"
     justify="start"
-    [ngClass]="{ 'checkbox-checked': todo.done }"
+    [(ngModel)]="todo.done"
   >
+    <!-- [ngClass]="{ 'checkbox-checked': todo.done }" -->
     {{ todo.description }}
   </ion-checkbox>
   <ion-button
