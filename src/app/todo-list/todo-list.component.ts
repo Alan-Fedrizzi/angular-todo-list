@@ -11,10 +11,17 @@ import { TodoService } from '../todo.service';
 export class TodoListComponent implements OnInit {
   @Input() todos: Todo[];
 
-  // constructor() {}
-  constructor(private todoService: TodoService) {}
+  todosLeft: number;
+
+  constructor(private todoService: TodoService) {
+    this.todosLeft = this.todoService.getTodosLeft();
+  }
 
   ngOnInit() {}
+
+  ngOnChanges() {
+    this.todosLeft = this.todoService.getTodosLeft();
+  }
 
   teste() {
     this.todoService.getTodosLeft();

@@ -15,20 +15,11 @@ export class TodoItemComponent implements OnInit {
 
   ngOnInit() {}
 
-  // onDeleteTodo() {
-  //   // this.todoDeleted.emit(this.todo.id);
-  //   this.todoService.deleteTodoEmit(this.todo.id);
-  // }
-
   onDeleteTodo(id: string) {
     this.todoService.onTodoDeleted(id);
   }
 
   onCheckTodo(e: MouseEvent) {
-    // e.preventDefault();
-    // e.stopPropagation();
-    // e.stopImmediatePropagation();
-    // console.log('aaaaaaaaa');
     this.todoService.onTodoChecked(this.todo.id);
   }
 }

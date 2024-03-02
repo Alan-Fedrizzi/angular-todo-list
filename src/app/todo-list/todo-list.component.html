@@ -1,6 +1,8 @@
 <ion-list class="todo-list">
   <ion-list-header>
-    <ion-label class="todo-list__title">Todo List: left</ion-label>
+    <ion-label class="todo-list__title">
+      Todo List: {{ todosLeft }} left
+    </ion-label>
   </ion-list-header>
   <app-todo-item *ngFor="let todo of todos" [todo]="todo"></app-todo-item>
 </ion-list>
