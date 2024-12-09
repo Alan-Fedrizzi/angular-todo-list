@@ -19,7 +19,7 @@ export class TodoItemComponent implements OnInit {
     this.todoService.onTodoDeleted(id);
   }
 
-  onCheckTodo(e: MouseEvent) {
-    this.todoService.onTodoChecked(this.todo.id);
+  onCheckTodo() {
+    this.todoService.onUpdateTodos();
   }
 }
