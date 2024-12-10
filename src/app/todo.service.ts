@@ -10,11 +10,25 @@ export class TodoService {
   todos: Todo[] = [];
   private todosSubject = new Subject<Todo[]>();
   todos$ = this.todosSubject.asObservable();
+  private numberOfTodosLeftSubject = new Subject<number>();
+  numberOfTodosLeft$ = this.numberOfTodosLeftSubject.asObservable();
 
   constructor() {}
 
   getTodos() {
     return this.todos.slice();
+  }
+
+  getNumberOfTodosLeft() {
+    return this.todos.filter((todo) => !todo.done).length;
+  }
+
+  emitNext() {
+    const todosCopy = this.todos.slice();
+    this.todosSubject.next(todosCopy);
+    this.numberOfTodosLeftSubject.next(
+      todosCopy.filter((todo) => !todo.done).length
+    );
   }
 
   onTodoAdded(description: string) {
@@ -26,62 +40,25 @@ export class TodoService {
       done: false,
     });
 
-    this.todosSubject.next(this.todos.slice());
+    this.emitNext();
   }
 
   onTodoDeleted(id: string) {
     const newTodos = this.todos.filter((todo) => todo.id !== id);
     this.todos = newTodos;
-    this.todosSubject.next(this.todos.slice());
+    this.emitNext();
   }
 
-  onUpdateTodos() {
-    this.todosSubject.next(this.todos.slice());
-  }
-
-  /*
-  // old...
-  todos: Todo[] = [];
-  @Output() todosUpdated = new EventEmitter<Todo[]>();
-
-  constructor() {}
-
-  getTodos() {
-    return this.todos.slice();
-  }
-
-  onTodoAdded(description: string) {
-    if (description === '' || description.length < 0) return;
-
-    this.todos.push({
-      id: crypto.randomUUID(),
-      description: description,
-      done: false,
+  onUpdateTodo(id: string) {
+    const newTodos = this.todos.map((todo) => {
+      return {
+        id: todo.id,
+        description: todo.description,
+        done: todo.id === id ? true : todo.done,
+      };
     });
 
-    this.todosUpdated.emit(this.todos.slice());
-  }
-
-  onTodoDeleted(id: string) {
-    const newTodos = this.todos.filter((todo) => todo.id !== id);
     this.todos = newTodos;
-    this.todosUpdated.emit(this.todos.slice());
+    this.emitNext();
   }
-
-  onTodoChecked(id: string) {
-    this.todosUpdated.emit(this.todos.slice());
-    console.log('onTodoChecked', this.todos);
-  }
-
-  getTodosLeft() {
-    const todosLeft = this.todos.filter((todo) => !todo.done);
-    this.todos.forEach((todo) => {
-      console.log(todo.description);
-      console.log(todo.done);
-    });
-    console.log('todosLeft', todosLeft);
-    console.log('todosLeft.length', todosLeft.length);
-    return todosLeft.length;
-  }
-  */
 }

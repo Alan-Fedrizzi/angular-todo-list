@@ -12,31 +12,20 @@ import { Subscription } from 'rxjs';
 export class TodoListComponent implements OnInit {
   @Input() todos: Todo[];
   todosLeft: number;
-  private todosSubscription!: Subscription;
+  private numberOfTodosLeftSubscription!: Subscription;
 
   constructor(private todoService: TodoService) {}
 
   ngOnInit() {
-    this.calculateTodosLeft(this.todos);
-
-    this.todosSubscription = this.todoService.todos$.subscribe((todos) => {
-      this.calculateTodosLeft(todos);
-    });
+    this.numberOfTodosLeftSubscription =
+      this.todoService.numberOfTodosLeft$.subscribe((n) => {
+        this.todosLeft = n;
+      });
   }
 
   ngOnDestroy() {
-    if (this.todosSubscription) {
-      this.todosSubscription.unsubscribe();
+    if (this.numberOfTodosLeftSubscription) {
+      this.numberOfTodosLeftSubscription.unsubscribe();
     }
-  }
-
-  calculateTodosLeft(todoList: Todo[]) {
-    console.log(todoList);
-    // console.log(todoList.length);
-    const a = todoList.filter((todo) => console.log(todo.done));
-    // console.log(a);
-    // this.todosLeft = a.length;
-
-    // console.log(this.todosLeft);
   }
 }
