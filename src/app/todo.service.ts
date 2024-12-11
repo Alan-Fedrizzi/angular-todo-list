@@ -16,6 +16,10 @@ export class TodoService {
   constructor() {}
 
   getTodos() {
+    const initialTodos = localStorage.getItem('todos');
+    const parsedInitialTodos = initialTodos ? JSON.parse(initialTodos) : [];
+    this.todos = parsedInitialTodos;
+
     return this.todos.slice();
   }
 
@@ -29,6 +33,7 @@ export class TodoService {
     this.numberOfTodosLeftSubject.next(
       todosCopy.filter((todo) => !todo.done).length
     );
+    localStorage.setItem('todos', JSON.stringify(todosCopy));
   }
 
   onTodoAdded(description: string) {

@@ -17,6 +17,8 @@ export class TodoListComponent implements OnInit {
   constructor(private todoService: TodoService) {}
 
   ngOnInit() {
+    this.todosLeft = this.todoService.getNumberOfTodosLeft();
+
     this.numberOfTodosLeftSubscription =
       this.todoService.numberOfTodosLeft$.subscribe((n) => {
         this.todosLeft = n;
