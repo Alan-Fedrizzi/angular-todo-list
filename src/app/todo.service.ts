@@ -59,7 +59,7 @@ export class TodoService {
       return {
         id: todo.id,
         description: todo.description,
-        done: todo.id === id ? true : todo.done,
+        done: todo.id === id ? !todo.done : todo.done,
       };
     });
 
